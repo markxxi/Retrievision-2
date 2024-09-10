@@ -1,0 +1,86 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.TEST" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.TEST" parent="Base.Theme.TEST" />
+    <style name="BottomNavigationStyle" parent="Widget.Design.BottomNavigationView">
+        <item name="android:background">@null</item>
+    </style>
+
+    <style name="ButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:fontFamily">@font/poppinsmedium</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+    </style>
+    <style name="ButtonStyleHome" parent="Widget.AppCompat.Button">
+        <item name="android:fontFamily">@font/poppinsmedium</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:radius">30dp</item>
+    </style>
+
+    <style name="RectangleViewStyle">
+        <item name="android:backgroundTint">#384C85</item>
+    </style>
+
+    <style name="neumorphCustom">
+        <item name="neumorph_cornerFamily">rounded</item>
+        <item name="neumorph_cornerSize">8dp</item>
+        <item name="neumorph_cornerSizeTopLeft">8dp</item>
+        <item name="neumorph_cornerSizeTopRight">8dp</item>
+        <item name="neumorph_cornerSizeBottomLeft">8dp</item>
+    </style>
+
+    <style name="neumorphCustomSubmit">
+        <item name="neumorph_cornerFamily">rounded</item>
+        <item name="neumorph_cornerSize">15dp</item>
+        <item name="neumorph_cornerSizeTopLeft">15dp</item>
+        <item name="neumorph_cornerSizeTopRight">15dp</item>
+        <item name="neumorph_cornerSizeBottomLeft">15dp</item>
+    </style>
+
+    <style name="customDropdown" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+        <item name="boxCornerRadiusBottomStart">15sp</item>
+        <item name="boxCornerRadiusBottomEnd">15sp</item>
+        <item name="boxCornerRadiusTopStart">15sp</item>
+        <item name="boxCornerRadiusTopEnd">15sp</item>
+        <item name="boxStrokeColor">@color/blue</item>
+        <item name="hintTextAppearance">@style/MyHintTextAppearance</item>
+
+    </style>
+
+    <style name="MyHintTextAppearance" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/yellow</item>
+    </style>
+
+    <style name="CustomInputText" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusBottomStart">15sp</item>
+        <item name="boxCornerRadiusBottomEnd">15sp</item>
+        <item name="boxCornerRadiusTopStart">15sp</item>
+        <item name="boxCornerRadiusTopEnd">15sp</item>
+        <item name="boxStrokeColor">@color/blue</item>
+    </style>
+
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog </item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="dialogStyle">
+        <item name="android:background">@drawable/shape_rectangle_21</item>
+        <item name="android:backgroundTint">#384C85</item>
+    </style>
+</resources>

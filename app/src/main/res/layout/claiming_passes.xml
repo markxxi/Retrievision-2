@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ClaimingPasses"
+    android:background="#E9C96E">
+    <TextView
+        android:id="@+id/h1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginTop="45dp"
+        android:text="Claiming Pass"
+        android:fontFamily="@font/poppinsmedium"
+        android:textStyle="bold"
+        android:textColor="@color/blue"
+        android:textSize="30sp">
+    </TextView>
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/claiming_pass_viewpager"
+        android:layout_below="@+id/h1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    </androidx.viewpager2.widget.ViewPager2>
+</RelativeLayout>

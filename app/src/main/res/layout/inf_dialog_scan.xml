@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="550dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:background="@drawable/shape_rectangle_21"
+    android:backgroundTint="#F1F5F9">
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="choose an object to scan"
+        android:textSize="12sp"
+        android:layout_gravity="center_horizontal"
+        android:textStyle="bold"
+        android:layout_marginStart="10dp"
+        android:paddingTop="4dp"/>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="200dp"
+        android:layout_gravity="center" />
+    <ScrollView
+        android:id="@+id/scroll_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+    </LinearLayout>
+
+    </ScrollView>
+
+
+        <RelativeLayout
+            android:id="@+id/layout_no_match"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/matchfound_headline"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:text="A match is not yet found."
+                android:fontFamily="@font/poppinsmedium"
+                android:textSize="35sp"
+                android:textColor="#49454f"
+                android:textStyle="bold">
+            </TextView>
+            <TextView
+                android:id="@+id/subheadline"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_below="@+id/matchfound_headline"
+                android:text="You can scan again later."
+                android:fontFamily="@font/poppinsmedium"
+                android:textSize="15sp"
+                android:textColor="#49454f"
+                android:textStyle="bold">
+            </TextView>
+
+            <soup.neumorphism.NeumorphButton
+                android:id="@+id/scan_another"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_above="@+id/home_button"
+                android:fontFamily="@font/poppinsmedium"
+                android:gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:text="Scan for another object"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                app:neumorph_backgroundColor="#E9C96E"
+                app:neumorph_shapeAppearance="@style/neumorphCustomSubmit"
+                app:neumorph_strokeColor="@color/blue"
+                app:neumorph_strokeWidth="1dp"
+                android:textColor="#49454f"
+                android:layout_marginBottom="-10dp">
+            </soup.neumorphism.NeumorphButton>
+
+            <soup.neumorphism.NeumorphButton
+                android:id="@+id/home_button"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_alignParentBottom="true"
+                app:neumorph_strokeColor="#E9C96E"
+                app:neumorph_strokeWidth="1dp"
+                app:neumorph_backgroundColor="@color/blue"
+                android:fontFamily="@font/poppinsmedium"
+                android:gravity="center"
+                android:text="Home"
+                android:textColor="#F1F5F9"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="25dp"
+                app:neumorph_shapeAppearance="@style/neumorphCustomSubmit">
+            </soup.neumorphism.NeumorphButton>
+        </RelativeLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"/>
+    <TextView
+        android:id="@+id/dialog_footer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="swipe to view more >>"
+        android:textSize="12sp"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"
+        android:layout_marginBottom="15dp"
+        android:gravity="bottom"/>
+
+</LinearLayout>

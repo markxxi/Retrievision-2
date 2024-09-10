@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Retrievision</string>
+    <string name="app_description">Lost and found mobile application for STI Calamba with automated matching and real-time reports.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="reportFoundObject">Report Found Object</string>
+    <string name="reportLostObject">Report Lost Object</string>
+    <string name="ScanDescription">Scan now to locate a reported matched object for easy finding
+                and retrieval</string>
+    <string name="FindMatch">Find a Match</string>
+    <string name="ScanNow">SCAN NOW</string>
+    <string name="ContentDescription">Image</string>
+    <string name="found_description">Please fill out the necessary details of the found object by following these steps.</string>
+    <string name="lost_description">Please fill out the necessary details of the lost object by following these steps.</string>
+    <string name="start">START</string>
+
+    <string name="subheadline">We will describe it for you.</string>
+    <string name="generatedheadline">We described it for you.</string>
+    <string name="taginstruction">You can edit, add, and remove the description for more accurate describing.</string>
+    <string name="opencam">+ OPEN CAMERA</string>
+    <string name="opengallery">+ OPEN GALLERY</string>
+    <string name="guidelines">Image Classification Guidelines:</string>
+    <string name="g1">1. Avoid blurry images and ensure that the subject of the photo is clear.</string>
+    <string name="g2">2. Use a plain background.</string>
+    <string name="g3">3. Ensure that the subject is free from any surrounding distractions.</string>
+    <string name="g4">4. Take photo in a well lit room. Use natural light as much as possible.</string>
+    <string name="g5">5. Place the object at the center of the camera.</string>
+    <string name="skip">SKIP</string>
+    <string name="submitImage">SUBMIT IMAGE</string>
+    <string name="confirmDetails">Confirm Details</string>
+
+    <string name="o365">Sign In with Microsoft 365</string>
+    <string name="owner">Owner</string>
+    <string name="surrender_the_object_to_the_student_affairs">Surrender the object to the student affairs.</string>
+    <string name="a_match_has_been_found">A match has been found.</string>
+    <string name="possible_matches_found">" possible matches found."</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="are_you_certain_that_the_object_belongs_to_you">Are you certain that the object belongs to you?</string>
+</resources>

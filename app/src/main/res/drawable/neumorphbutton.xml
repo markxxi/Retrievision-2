@@ -1,0 +1,28 @@
+<!-- neumorph_button_bg.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Background color or shape -->
+    <item android:id="@+id/background_shape">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/blue" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+
+    <!-- Light shadow -->
+    <item android:id="@+id/light_shadow">
+        <shape android:shape="rectangle">
+            <solid android:color="#144380" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+
+    <!-- Dark shadow -->
+    <item android:id="@+id/dark_shadow" android:top="1dp" android:right="1dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#123461" />
+            <corners android:radius="8dp" />
+        </shape>
+    </item>
+
+</layer-list>

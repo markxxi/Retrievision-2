@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignIn">
+
+    <ImageView
+        android:layout_width="328dp"
+        android:layout_height="515dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-28dp"
+        android:layout_marginEnd="-4dp"
+        android:contentDescription="@string/ContentDescription"
+        android:src="@drawable/logo_cropped">
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/app_name"
+        android:layout_width="246dp"
+        android:layout_height="75dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="460dp"
+        android:layout_marginEnd="115dp"
+        android:contentDescription="@string/ContentDescription"
+        android:src="@drawable/logo_title">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/logodescription"
+        android:layout_width="305dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/app_name"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="-4dp"
+        android:layout_marginEnd="59dp"
+        android:fontFamily="@font/poppinsmedium"
+        android:text="@string/app_description"
+        android:textStyle="bold">
+    </TextView>
+
+    <ImageView
+        android:layout_width="294dp"
+        android:layout_height="52dp"
+        android:layout_below="@id/logodescription"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="40dp"
+        android:background="@drawable/shape_rectangle_40"
+        android:backgroundTint="#F7B94A"
+        android:contentDescription="@string/ContentDescription">
+    </ImageView>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logodescription"
+        android:layout_marginTop="39dp"
+        android:layout_marginStart="28dp">
+
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="35dp"
+            android:src="@drawable/logos_microsoft_icon"
+            android:contentDescription="@string/ContentDescription"/>
+
+        <ImageView
+            android:id="@+id/image2"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/image1"
+            android:src="@drawable/sti_logo"
+            android:contentDescription="@string/ContentDescription"/>
+
+        <TextView
+            android:id="@+id/button_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/image2"
+            android:fontFamily="@font/poppinsmedium"
+            android:text="@string/o365"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/signin"
+            android:layout_width="295dp"
+            android:layout_height="55dp"
+            android:background="@drawable/shape_stroke_blue">
+        </androidx.appcompat.widget.AppCompatButton>
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_centerInParent="true" />
+</RelativeLayout>

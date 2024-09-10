@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#425066"
+    tools:context=".Skip"
+    android:id="@+id/scrollView"
+    tools:ignore="HardcodedText,LabelFor">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="804dp">
+
+        <TextView
+            android:id="@+id/reportlosttext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:layout_marginTop="25dp"
+            android:text="Report Lost Object"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:fontFamily="@font/poppinsmedium"
+            android:textColor="@color/yellow"
+            />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/group1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/reportlosttext"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/attribute_bg_27"
+
+            android:paddingTop="20dp"
+            android:paddingBottom="30dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="20dp"
+            android:clipToPadding="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/changeColorCategory"
+                    style="@style/customDropdown"
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Category*">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/categoryDropdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/addcategorybtn"
+                    android:layout_width="37dp"
+                    android:layout_height="37dp"
+                    android:background="@drawable/button_plus"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginEnd="2dp"/>
+
+            </LinearLayout>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/categorychipgroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/changeColorType"
+                style="@style/CustomInputText"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                app:helperText="E.g.: Wallet, ID, Bracelet"
+                app:helperTextTextColor="#737373">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/type"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true"
+                    style="@style/CustomInputText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Type*"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/typechipgroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/changeColorColor"
+                    style="@style/customDropdown"
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Color*">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/colorDropdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/addcolorbtn"
+                    android:layout_width="37dp"
+                    android:layout_height="37dp"
+                    android:background="@drawable/button_plus"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="-4dp"
+                    android:layout_marginEnd="2dp"/>
+
+            </LinearLayout>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/colorchipgroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                style="@style/CustomInputText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:helperText="Android, Penshoppe, Faber Castle"
+                app:helperTextTextColor="#737373">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/brandinput"
+                    style="@style/CustomInputText"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Brand"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/brandchipgroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                style="@style/CustomInputText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:helperText="iPhone 13, G-Tech, or any combination of numbers"
+                app:helperTextTextColor="#737373">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/modelinput"
+                    style="@style/CustomInputText"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Model"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/modelchipgroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/group2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/attribute_bg_27"
+            android:layout_below="@+id/group1"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="30dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="20dp"
+            android:clipToPadding="false">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Additional Information (Optional)"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#737373"
+                android:layout_marginBottom="15dp"
+                android:text="Fill applicable fields only if available."/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/sizeInputLayout"
+                style="@style/customDropdown"
+                app:boxStrokeColor="@color/material_on_primary_emphasis_medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:helperText="Small, Medium, Large"
+                app:helperTextTextColor="#737373"
+                android:hint="Size">
+
+                <AutoCompleteTextView
+                    android:id="@+id/sizeDropdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/shapeInputLayout"
+                style="@style/customDropdown"
+                app:boxStrokeColor="@color/material_on_primary_emphasis_medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:helperText="Square, Rectangle, Triangle"
+                app:helperTextTextColor="#737373"
+                android:hint="Shape">
+
+                <AutoCompleteTextView
+                    android:id="@+id/shapeDropdown"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/dimensionInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    style="@style/CustomInputText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:helperText="In inches"
+                    app:helperTextTextColor="#737373">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/width"
+                        style="@style/CustomInputText"
+                        android:imeOptions="actionDone"
+                        android:singleLine="true"
+                        android:layout_width="145dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:hint="Width" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    style="@style/CustomInputText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="5dp"
+                    app:helperText=""
+                    app:helperTextTextColor="#737373">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/height"
+                        style="@style/CustomInputText"
+                        android:imeOptions="actionDone"
+                        android:singleLine="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Height" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                style="@style/CustomInputText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:helperText="Any texts that can be seen in the object"
+                app:helperTextTextColor="#737373">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textinput"
+                    style="@style/CustomInputText"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/textchipgroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </com.google.android.material.chip.ChipGroup>
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                style="@style/CustomInputText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:helperText="You can give any notice/comments."
+                app:helperTextTextColor="#737373">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/UFinput"
+                    style="@style/CustomInputText"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Remarks" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/group2"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/attribute_bg_0"
+            android:paddingTop="20dp"
+            android:paddingBottom="50dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:clipToPadding="false">
+
+            <TextView
+                android:id="@+id/changeColorLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Location Object Lost*"
+
+                android:fontFamily="@font/poppinsmedium"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    style="@style/customDropdown"
+                    android:hint="select"
+                    app:helperText="Locations you recently visited."
+                    android:clipToPadding="false">
+
+
+                    <AutoCompleteTextView
+                        android:id="@+id/locationDropdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:inputType="none" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/addlocationbtn"
+                    android:layout_width="37dp"
+                    android:layout_height="37dp"
+                    android:background="@drawable/button_plus"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="-4dp"
+                    android:layout_marginEnd="2dp"/>
+            </LinearLayout>
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/locationchipgroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </com.google.android.material.chip.ChipGroup>
+            <TextView
+                android:id="@+id/changeColorTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date and Time Object Lost*"
+                android:fontFamily="@font/poppinsmedium"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:paddingTop="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:baselineAligned="false" android:orientation="horizontal">
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/CustomInputText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="5dp"
+                    app:helperText=""
+                    app:helperTextTextColor="#737373"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/CustomInputText"
+                        android:ems="10"
+                        android:hint="Date"
+                        android:layout_marginEnd="5dp"
+                        android:inputType="date" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/CustomInputText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="5dp"
+                    app:helperText=""
+                    app:helperTextTextColor="#737373"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="Time"
+                        android:inputType="time" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+        </com.google.android.material.chip.ChipGroup>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/skipsubmit"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/location"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="121dp"
+            android:layout_marginBottom="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="120dp"
+            android:background="@drawable/shape_rectangle_40"
+            android:fontFamily="@font/poppinsmedium"
+            android:textColor="@color/blue"
+            android:text="Submit">
+        </androidx.appcompat.widget.AppCompatButton>
+    </RelativeLayout>
+</ScrollView>

@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="HardcodedText,SpeakableTextPresentCheck,TouchTargetSizeCheck"
+    tools:context=".Generated_Found"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="25dp"
+            android:fontFamily="@font/poppinsmedium"
+            android:text="@string/generatedheadline"
+            android:textSize="28sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/headingdescription"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="20dp"
+            android:layout_below="@id/heading"
+            android:fontFamily="@font/poppinsmedium"
+            android:text="@string/taginstruction"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipType1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/headingdescription"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/attribute_bg_27"
+            android:clipToPadding="false"
+            android:paddingTop="30dp"
+            android:paddingBottom="30dp"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp">
+
+            <TextView
+                android:id="@+id/category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/headingdescription"
+                android:fontFamily="@font/poppinsmedium"
+                android:text="Category *" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="65dp"
+                        android:layout_weight="1"
+                        style="@style/customDropdown"
+                        android:hint="select"
+                        android:clipToPadding="false">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/categoryDropdown"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginBottom="8dp"
+                            android:inputType="none"
+                            tools:ignore="LabelFor" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/categoryButton"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="3dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/button_plus" />
+
+                </LinearLayout>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipType"
+                android:clipToPadding="false"
+                android:paddingBottom="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="Type *">
+                </TextView>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/addTypeButton"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/button_plus" />
+                        <View
+                            android:layout_width="2dp"
+                            android:layout_height="48dp">
+                        </View>
+                    </LinearLayout>
+
+            </com.google.android.material.chip.ChipGroup>
+            <TextView
+                android:id="@+id/color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/category"
+                android:fontFamily="@font/poppinsmedium"
+                android:text="Color *" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/changeColorColor"
+                    style="@style/customDropdown"
+                    android:layout_width="0dp"
+                    android:layout_height="65dp"
+                    android:layout_weight="1"
+                    android:hint="select">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/colorDropdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="8dp"
+                        android:inputType="none"
+                        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/addColorButton"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/button_plus"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </LinearLayout>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:visibility="invisible" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/sizes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/chipType1"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/attribute_bg_27"
+            android:paddingTop="20dp"
+            android:paddingBottom="30dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:clipToPadding="false">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Additional Information"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#737373"
+                android:layout_marginBottom="15dp"
+                android:text="Fill applicable fields only if available."/>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipBrand"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/brand"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/addModelButton"
+                    android:paddingTop="10dp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="Brand">
+                </TextView>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/addBrandButton"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/button_plus"
+                        android:layout_gravity="center_vertical" />
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="48dp">
+                    </View>
+                </LinearLayout>
+
+            </com.google.android.material.chip.ChipGroup>
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipModel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/model"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/headingdescription"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="Model ">
+
+                </TextView>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/addModelButton"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/button_plus"
+                        android:layout_gravity="center_vertical" />
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="48dp">
+                    </View>
+                </LinearLayout>
+
+
+            </com.google.android.material.chip.ChipGroup>
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/headingdescription"
+                    android:paddingTop="7dp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="Texts that can be seen in the object:">
+
+                </TextView>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/addTextButton"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/button_plus"
+                        android:layout_gravity="center_vertical" />
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="48dp">
+                    </View>
+                </LinearLayout>
+
+            </com.google.android.material.chip.ChipGroup>
+            <LinearLayout
+                android:id="@+id/chipSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="7dp"
+                android:clipToPadding="false">
+
+                <TextView
+                    android:id="@+id/size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="Size">
+                </TextView>
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/customDropdown"
+                    app:boxStrokeColor="@color/material_on_primary_emphasis_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:hint="select">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/sizeDropdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/chipShape"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:clipToPadding="false"
+                android:paddingBottom="7dp">
+
+                <TextView
+                    android:id="@+id/shape"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="Shape">
+
+                </TextView>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/customDropdown"
+                    app:boxStrokeColor="@color/material_on_primary_emphasis_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:hint="select">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/shapeDropdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        tools:ignore="LabelFor,SpeakableTextPresentCheck" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/chipDimension"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:clipToPadding="false"
+                android:paddingBottom="7dp">
+
+                <TextView
+                    android:id="@+id/measurement"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:fontFamily="@font/poppinsmedium"
+                    android:text="Dimension">
+
+                </TextView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:baselineAligned="false">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/CustomInputText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:helperText="In inches"
+                        app:helperTextTextColor="#737373">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/widthInput"
+                            style="@style/CustomInputText"
+                            android:imeOptions="actionDone"
+                            android:singleLine="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:hint="Width" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/CustomInputText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="5dp"
+                        app:helperText=""
+                        app:helperTextTextColor="#737373">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/heightInput"
+                            android:imeOptions="actionDone"
+                            android:singleLine="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Length" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </com.google.android.material.chip.ChipGroup>
+
+
+        <TextView
+            android:id="@+id/heading2"
+            android:layout_below="@id/sizes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="25dp"
+            android:fontFamily="@font/poppinsmedium"
+            android:textSize="20sp"
+            android:text="Let's add some more information."
+            android:textStyle="bold">
+
+        </TextView>
+        <TextView
+            android:id="@+id/headingdescription2"
+            android:layout_below="@id/heading2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginBottom="21dp"
+            android:fontFamily="@font/poppinsmedium"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="This will help us find your missing item accurately.">
+        </TextView>
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/headingdescription2"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/attribute_bg_0"
+            android:paddingTop="20dp"
+            android:paddingBottom="50dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:clipToPadding="false">
+
+            <TextView
+                android:id="@+id/TextLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Location Object Found *"
+                android:fontFamily="@font/poppinsmedium"
+                android:textStyle="bold"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    style="@style/customDropdown"
+                    android:hint="select"
+                    android:clipToPadding="false">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/locationDropdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        tools:ignore="LabelFor" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipLocation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false">
+            </com.google.android.material.chip.ChipGroup>
+            <TextView
+                android:id="@+id/TextTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Time Object Found *"
+                android:fontFamily="@font/poppinsmedium"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:paddingTop="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:baselineAligned="false" android:orientation="horizontal">
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/CustomInputText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="5dp"
+                    app:helperText=""
+                    app:helperTextTextColor="#737373"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/CustomInputText"
+                        android:ems="10"
+                        android:hint="Date"
+                        android:layout_marginEnd="5dp"
+                        android:inputType="date" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/CustomInputText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="5dp"
+                    app:helperText=""
+                    app:helperTextTextColor="#737373"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="Time"
+                        android:inputType="time" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/remarks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/headingdescription"
+                android:paddingTop="10dp"
+                android:fontFamily="@font/poppinsmedium"
+                android:text="Remarks">
+
+            </TextView>
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                style="@style/CustomInputText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:helperTextTextColor="#737373">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/remarksInput"
+                    style="@style/CustomInputText"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Add some note"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.chip.ChipGroup>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/submitfoundobject"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/location"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="121dp"
+            android:layout_marginBottom="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="120dp"
+            android:background="@drawable/shape_rectangle_40"
+            android:fontFamily="@font/poppinsmedium"
+            android:textColor="@color/blue"
+            android:text="Submit">
+        </androidx.appcompat.widget.AppCompatButton>
+    </RelativeLayout>
+
+</ScrollView>
