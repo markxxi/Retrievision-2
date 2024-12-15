@@ -70,6 +70,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/changeColorCategory"
                         android:layout_width="0dp"
                         android:layout_height="65dp"
                         android:layout_weight="1"
@@ -417,7 +418,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="5dp"
-                            android:hint="Width" />
+                            android:hint="Width"
+                            android:inputType="number"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -435,6 +437,7 @@
                             android:singleLine="true"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:hint="Length" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -503,7 +506,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
+                    android:layout_marginEnd="8dp"
                     style="@style/customDropdown"
                     android:hint="select"
                     android:clipToPadding="false">
@@ -517,13 +521,32 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/roomInputLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    style="@style/customDropdown"
+                    android:hint="room"
+                    android:visibility="gone"
+                    android:clipToPadding="false">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/roomDropdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="none"
+                        tools:ignore="LabelFor" />
+
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
+
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chipLocation"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false">
+                android:layout_height="match_parent">
             </com.google.android.material.chip.ChipGroup>
+
             <TextView
                 android:id="@+id/TextTime"
                 android:layout_width="match_parent"

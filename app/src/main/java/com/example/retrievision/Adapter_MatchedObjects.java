@@ -3,6 +3,7 @@ package com.example.retrievision;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +28,10 @@ public class Adapter_MatchedObjects extends RecyclerView.Adapter < Adapter_Match
     private final List < ChipClass > matchedObjects;
     private final ViewPager2 viewPager2;
     private final String matchedReportId;
+    private Context context;
 
-    public Adapter_MatchedObjects(List < ChipClass > matchedObjects, ViewPager2 viewPager2, String matchedReportId) {
+    public Adapter_MatchedObjects(Context context,List < ChipClass > matchedObjects, ViewPager2 viewPager2, String matchedReportId) {
+        this.context = context;
         this.matchedObjects = matchedObjects;
         this.viewPager2 = viewPager2;
         this.matchedReportId = matchedReportId;
@@ -45,8 +48,8 @@ public class Adapter_MatchedObjects extends RecyclerView.Adapter < Adapter_Match
     public void onBindViewHolder(@NonNull MatchViewHolder holder, int position) {
         ChipClass matchedObject = matchedObjects.get(position);
 
-        holder.getDateAsText.setText(matchedObject.getDate());
-        holder.getTimeAsText.setText(matchedObject.getTime());
+        holder.getDateAsText.setText(matchedObject.getDateReported());
+
 
         setAttributeVisibility(holder.categoryContainer, holder.getCategoryAsText, matchedObject.getCategory());
         setAttributeVisibility(holder.typeContainer, holder.getTypeAsText, matchedObject.getType());
@@ -60,10 +63,15 @@ public class Adapter_MatchedObjects extends RecyclerView.Adapter < Adapter_Match
         setAttributeVisibility(holder.dimensionContainer, holder.getWidthAsText, matchedObject.getWidth());
         setAttributeVisibility(holder.dimensionContainer, holder.getLengthAsText, matchedObject.getHeight());
         setAttributeVisibility(holder.remarksContainer, holder.getRemarksAsText, matchedObject.getRemarks());
-        if (!matchedObject.getImageUrl().isEmpty()) {
+        if (matchedObject.getImageUrl() != null && !matchedObject.getImageUrl().isEmpty()) {
             String photoPath = matchedObject.getImageUrl();
             Glide.with(holder.itemView.getContext()).load(photoPath).into(holder.setImage);
+        } else {
+            Glide.with(holder.itemView.getContext())
+                    .load(R.drawable.logo_ret_rev)
+                    .into(holder.setImage);
         }
+
 
         buttonClaim(holder.claim, matchedObject, holder.itemView.getContext());
         buttonNotMine(holder.notMine, position);
@@ -82,10 +90,11 @@ public class Adapter_MatchedObjects extends RecyclerView.Adapter < Adapter_Match
             layout2.setVisibility(View.VISIBLE);
 
             button.setOnClickListener(v -> {
-
+                Toast.makeText(context, "For instances of objects being exchanged, please visit the SAO.", Toast.LENGTH_SHORT+8).show();
             });
         }
     }
+
 
     private void buttonNotMine(MaterialButton button, int position) {
         button.setOnClickListener(v -> {
@@ -96,9 +105,9 @@ public class Adapter_MatchedObjects extends RecyclerView.Adapter < Adapter_Match
     private void buttonClaim(MaterialButton button, ChipClass object, Context context) {
         button.setOnClickListener(v -> {
             showDialog(context, object);
-            //updateObjectStatus(object, "Match Found", context);
         });
     }
+
     private void showDialog(Context context, ChipClass object) {
         Dialog dialog = new Dialog(context, R.style.AlertDialogTheme);
         dialog.setContentView(R.layout.inf_dialog);
@@ -109,21 +118,34 @@ public class Adapter_MatchedObjects extends RecyclerView.Adapter < Adapter_Match
         textView.setTextSize(11);
         AppCompatButton yes = dialog.findViewById(R.id.yesButton);
         AppCompatButton no = dialog.findViewById(R.id.noButton);
-
+        no.setText("No");
         no.setOnClickListener(v -> dialog.dismiss());
         yes.setOnClickListener(v -> {
-            updateObjectStatus(object, "Match Found", context);
+
+            String currentStatus = object.getStatus();
+            String newStatus;
+
+            if ("Surrendered".equals(currentStatus)) {
+                newStatus = "Match Found and Surrendered";
+            } else if ("Pending".equals(currentStatus)) {
+                newStatus = "Match Found";
+            } else {
+                newStatus = "Match Found";
+            }
+
+            updateObjectStatus(object, newStatus, context); // Update with the determined status
             Intent intent = new Intent(context, ClaimingPass.class);
             intent.putExtra("objectID", objectID);
             intent.putExtra("matchedReportId", matchedReportId);
             context.startActivity(intent);
         });
+
         dialog.show();
     }
 
     String objectID;
-    private void updateObjectStatus(ChipClass object, String newStatus, Context context) {
 
+    private void updateObjectStatus(ChipClass object, String newStatus, Context context) {
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         String userID = firebaseAuth.getUid();
@@ -141,13 +163,12 @@ public class Adapter_MatchedObjects extends RecyclerView.Adapter < Adapter_Match
 
                                 });
                     } else {
-                        Toast.makeText(context, "Failed to update status", Toast.LENGTH_SHORT).show();
                     }
                 });
 
         firestore.collection("User").document(userID)
                 .collection("LostObject").document(matchedReportId)
-                .update("status", newStatus)
+                .update("status", "Match Found")
                 .addOnCompleteListener(task2 -> {
                     if (task2.isSuccessful()) {
                         firestore.collection("LostObject")
@@ -155,7 +176,6 @@ public class Adapter_MatchedObjects extends RecyclerView.Adapter < Adapter_Match
                                 .update("status", newStatus)
                                 .addOnCompleteListener(task1 -> {
                                     if (task1.isSuccessful()) {
-                                        //  Toast.makeText(context, "Status updated successfully", Toast.LENGTH_SHORT).show();
                                     } else {
                                         Toast.makeText(context, "Failed to update status", Toast.LENGTH_SHORT).show();
                                     }
@@ -186,12 +206,13 @@ public class Adapter_MatchedObjects extends RecyclerView.Adapter < Adapter_Match
     }
 
     static class MatchViewHolder extends RecyclerView.ViewHolder {
-        TextView getCategoryAsText, getTypeAsText, getColorAsText, getLocationAsText, getDateAsText, getTimeAsText,
+        TextView getCategoryAsText, getTypeAsText, getColorAsText, getLocationAsText, getDateAsText,
                 getBrandAsText, getModelAsText, getSizeAsText, getShapeAsText, getWidthAsText, getLengthAsText, getTextAsText, getRemarksAsText;
         LinearLayout brandContainer, modelContainer, sizeContainer, shapeContainer, dimensionContainer, textContainer, remarksContainer,
                 categoryContainer, typeContainer, colorContainer, locationContainer, nc_btn, setClaimedLayout;
         ImageView setImage;
         MaterialButton notMine, claim, setClaimed;
+        TextView cv_text;
         public MatchViewHolder(@NonNull View itemView) {
             super(itemView);
             getCategoryAsText = itemView.findViewById(R.id.getCategoryAsText);
@@ -207,11 +228,9 @@ public class Adapter_MatchedObjects extends RecyclerView.Adapter < Adapter_Match
             getRemarksAsText = itemView.findViewById(R.id.getRemarksAsText);
             getLocationAsText = itemView.findViewById(R.id.getLocationAsText);
             getDateAsText = itemView.findViewById(R.id.getDateAsText);
-            getTimeAsText = itemView.findViewById(R.id.getTimeAsText);
 
-            //image
+            cv_text = itemView.findViewById(R.id.cvtext);
             setImage = itemView.findViewById(R.id.imageView4);
-            //inflate set visibility
             brandContainer = itemView.findViewById(R.id.brandContainer);
             modelContainer = itemView.findViewById(R.id.modelContainer);
             sizeContainer = itemView.findViewById(R.id.sizeContainer);

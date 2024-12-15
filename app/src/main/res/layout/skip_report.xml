@@ -231,7 +231,8 @@
                 android:layout_height="wrap_content"
                 app:helperText="Small, Medium, Large"
                 app:helperTextTextColor="#737373"
-                android:hint="Size">
+                android:hint="Size"
+                android:visibility="gone">
 
                 <AutoCompleteTextView
                     android:id="@+id/sizeDropdown"
@@ -239,6 +240,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="none"/>
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/shapeInputLayout"
                 style="@style/customDropdown"
@@ -280,9 +282,10 @@
                         style="@style/CustomInputText"
                         android:imeOptions="actionDone"
                         android:singleLine="true"
-                        android:layout_width="145dp"
+                        android:layout_width="match_parent"
+                        android:layout_marginEnd="3dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
+                       android:inputType="number"
                         android:hint="Width" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -292,7 +295,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginStart="5dp"
                     app:helperText=""
                     app:helperTextTextColor="#737373">
 
@@ -303,6 +305,8 @@
                         android:singleLine="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+                        android:inputType="number"
                         android:hint="Height" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -378,18 +382,18 @@
                 android:textSize="20sp" />
 
             <LinearLayout
-
+                android:id="@+id/locationLinear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
-
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
                     style="@style/customDropdown"
                     android:hint="select"
+                    android:layout_marginEnd="8dp"
                     app:helperText="Locations you recently visited."
                     android:clipToPadding="false">
 
@@ -398,24 +402,52 @@
                         android:id="@+id/locationDropdown"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:inputType="none" />
 
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/roomInputLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    style="@style/customDropdown"
+                    android:hint="room"
+                    android:visibility="gone"
+                    android:clipToPadding="false">
+
+
+                    <AutoCompleteTextView
+                        android:id="@+id/roomDropdown"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:inputType="none" />
 
                 </com.google.android.material.textfield.TextInputLayout>
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/addlocationbtn"
-                    android:layout_width="37dp"
-                    android:layout_height="37dp"
-                    android:background="@drawable/button_plus"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
                     android:layout_marginStart="12dp"
-                    android:layout_marginTop="-4dp"
-                    android:layout_marginEnd="2dp"/>
+                    android:layout_marginEnd="2dp"
+                    android:background="@drawable/button_plus" />
             </LinearLayout>
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/locationchipgroup"
+
+
+
+            <LinearLayout
+                android:id="@+id/chipLocationLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            </com.google.android.material.chip.ChipGroup>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/locationchipgroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </com.google.android.material.chip.ChipGroup>
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/changeColorTime"
                 android:layout_width="match_parent"

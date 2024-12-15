@@ -73,6 +73,7 @@
 
             <soup.neumorphism.NeumorphButton
                 android:id="@+id/scan_another"
+                style="@style/Widget.Neumorph.Button"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_above="@+id/home_button"
@@ -94,6 +95,7 @@
                 android:id="@+id/home_button"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
+                style="@style/Widget.Neumorph.Button"
                 android:layout_marginHorizontal="10dp"
                 android:layout_alignParentBottom="true"
                 app:neumorph_strokeColor="#E9C96E"
@@ -114,6 +116,7 @@
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_6sdp"
             android:layout_gravity="center"
             android:layout_weight="1"/>
     <TextView

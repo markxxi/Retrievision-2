@@ -7,73 +7,73 @@
     android:orientation="vertical"
     android:backgroundTint="#F1F5F9"
     tools:ignore="HardcodedText, UseCompatTextViewDrawableXml,UseCompoundDrawables,ContentDescription">
+    <LinearLayout
+        android:id="@+id/dialog_header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_22sdp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp"
+      android:gravity="center_vertical"
+        android:paddingHorizontal="8dp"
+        android:visibility="gone">
+        <com.google.android.material.chip.Chip
+            android:id="@+id/report_type"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            app:chipIcon="@drawable/icon_box"
+            android:textColor="@android:color/white"
+            app:chipCornerRadius="8dp"
+            app:chipIconSize="13dp"
+            android:textSize="11sp"
+            app:chipStrokeColor="@android:color/transparent"
+            app:chipEndPadding="1dp"
+            app:textStartPadding="5dp">
+        </com.google.android.material.chip.Chip>
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/status_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="41dp"
+            android:layout_marginHorizontal="4dp"
+            app:chipIcon="@drawable/shape_rectangle_40"
+            app:chipIconSize="13dp"
+            app:chipBackgroundColor="#DADEE2"
+            app:chipCornerRadius="15dp"
+            app:chipStrokeColor="@android:color/transparent"
+            android:text="status"
+            android:fontFamily="@font/poppinsmedium"
+            android:textSize="11sp"
+            app:chipEndPadding="2dp"
+            app:textStartPadding="5dp">
+        </com.google.android.material.chip.Chip>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+        </View>
+        <ImageView
+            android:id="@+id/close_dialog"
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:src="@drawable/close_dialog"
+            android:layout_gravity="center_vertical">
+        </ImageView>
+    </LinearLayout>
     <ScrollView
+        android:layout_below="@id/dialog_header"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-        android:layout_marginBottom="70dp">
+        android:layout_marginBottom="60dp">
     <RelativeLayout
             android:id="@+id/matched_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             tools:ignore="UselessParent"
+        android:paddingBottom="30dp"
             android:layout_margin="10dp">
-        <LinearLayout
-            android:id="@+id/dialog_header"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="-6dp"
-            android:paddingHorizontal="4dp"
-            android:visibility="gone">
-            <com.google.android.material.chip.Chip
-                android:id="@+id/report_type"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                app:chipIcon="@drawable/icon_box"
-                android:textColor="@android:color/white"
-                app:chipCornerRadius="8dp"
-                app:chipIconSize="13dp"
-                android:textSize="11sp"
-                app:chipStrokeColor="@android:color/transparent"
-                app:chipEndPadding="1dp"
-                app:textStartPadding="5dp">
-            </com.google.android.material.chip.Chip>
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/status_tag"
-                android:layout_width="wrap_content"
-                android:layout_height="41dp"
-                android:layout_marginHorizontal="4dp"
-                app:chipIcon="@drawable/shape_rectangle_40"
-                app:chipIconSize="13dp"
-                app:chipBackgroundColor="#DADEE2"
-                app:chipCornerRadius="15dp"
-                app:chipStrokeColor="@android:color/transparent"
-                android:text="status"
-                android:fontFamily="@font/poppinsmedium"
-                android:textSize="11sp"
-                app:chipEndPadding="2dp"
-                app:textStartPadding="5dp">
-            </com.google.android.material.chip.Chip>
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1">
-            </View>
-            <ImageView
-                android:layout_width="21dp"
-                android:layout_height="21dp"
-                android:src="@drawable/shape_rectangle_40"
-                app:tint="#BABDC1"
-                android:layout_gravity="center_vertical">
-            </ImageView>
-        </LinearLayout>
-
 
         <androidx.cardview.widget.CardView
-            android:layout_below="@id/dialog_header"
                 android:id="@+id/cv"
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
@@ -589,30 +589,16 @@
                                 android:textSize="12sp" />
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="1dp"
-                            android:orientation="vertical"
-                            android:layout_marginStart="55.5dp">
 
                             <TextView
                                 android:id="@+id/getDateAsText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="1dp"
                                 android:fontFamily="@font/poppinsmedium"
                                 android:text="placeholder"
-                                android:textSize="12sp" />
-
-                            <TextView
-                                android:id="@+id/getTimeAsText"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="2dp"
-                                android:fontFamily="@font/poppinsmedium"
-                                android:text="placeholder"
-                                android:textSize="12sp" />
-                        </LinearLayout>
+                                android:textSize="12sp"
+                                android:layout_marginStart="55.5dp"/>
                     </LinearLayout>
         </LinearLayout>
         </RelativeLayout>
@@ -671,7 +657,7 @@
         android:layout_margin="8dp"
         android:backgroundTint="#2F2F2F"
         app:cornerRadius="10dp"
-        android:text="CLAIMED"
+        android:text="Matched Already Found"
         android:fontFamily="@font/poppinsmedium"
         android:textStyle="bold"
         android:textSize="11sp">
@@ -687,9 +673,24 @@
         android:layout_marginBottom="10dp"
         android:visibility="gone">
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/scan_button_profile"
-            android:layout_width="match_parent"
+            android:id="@+id/deleteReportButton"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="match_parent"
+            android:layout_marginHorizontal="8dp"
+            android:backgroundTint="#D6293E"
+            app:cornerRadius="10dp"
+            android:text="DELETE"
+            android:fontFamily="@font/poppinsmedium"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="11sp"
+            />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/scan_button_profile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:layout_marginHorizontal="8dp"
             android:backgroundTint="#E9C96E"
             app:cornerRadius="10dp"

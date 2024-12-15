@@ -54,11 +54,13 @@
 
         <soup.neumorphism.NeumorphButton
             android:id="@+id/scan_button"
+            style="@style/Widget.Neumorph.Button"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:drawableStart="@drawable/scan"
-            android:paddingHorizontal="23dp"
+            android:paddingHorizontal="20dp"
             android:drawableTint="#404244"
+            app:neumorph_strokeColor="@android:color/transparent"
             android:layout_gravity="center_vertical"
             app:neumorph_shapeAppearance="@style/neumorphCustom"/>
     </LinearLayout>

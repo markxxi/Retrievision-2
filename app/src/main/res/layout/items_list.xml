@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/llMain"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingHorizontal="10dp"
+    android:paddingBottom="5dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:color/white"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp"
+        app:cardUseCompatPadding="true"
+        >
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/boardImg"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Small"
+            android:padding="8dp"
+            android:src="@mipmap/retrievision" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+
+
+            <TextView
+                android:id="@+id/uniqueName"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+
+
+                android:text="uniqueName"
+                android:textStyle="bold" />
+
+
+
+            <TextView
+                android:id="@+id/countName"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/uniqueName"
+                android:text="countName"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</LinearLayout>

@@ -1,7 +1,9 @@
 package com.example.retrievision;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -9,14 +11,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.button.MaterialButton;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.HashMap;
 import java.util.List;
@@ -25,19 +33,32 @@ import java.util.Map;
 public class ClaimingPass extends AppCompatActivity {
 FirebaseFirestore firestore;
 String matchedReportID, objectID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.claiming_pass);
+        FirebaseApp.initializeApp(this);
         firestore = FirebaseFirestore.getInstance();
         InitIDs();
         Intent intent = getIntent();
-        matchedReportID = intent.getStringExtra("matchedReportId"); //the lost id
-        objectID = intent.getStringExtra("objectID"); // the found id
+        matchedReportID = intent.getStringExtra("matchedReportId"); // the found id (from founder)
+        objectID = intent.getStringExtra("objectID"); // the lost id (from user)
         retrieveObjectID();
         retrieveMatchedReportID();
         storeClaimPass();
+        setCpass_home();
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent intent = new Intent(ClaimingPass.this, HomeNavigation.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void storeClaimPass() {
@@ -47,21 +68,66 @@ String matchedReportID, objectID;
         String displayName = currentUser.getDisplayName();
 
         Map<String, Object> claimData = new HashMap<>();
-        claimData.put("matchedReportID", matchedReportID);
-        claimData.put("objectID", objectID);
+        claimData.put("foundedObjectMatched", objectID);
+        claimData.put("lostObjectBeingMatched", matchedReportID);
         claimData.put("userName", displayName);
-        claimData.put("dateClaimed", System.currentTimeMillis()); // Example timestamp
-
+        claimData.put("dateClaimed", System.currentTimeMillis());
         firestore.collection("User").document(userID)
                 .collection("ClaimedObjects")
                 .add(claimData)
                 .addOnSuccessListener(documentReference -> {
                     String reportId = documentReference.getId();
-                    getReportIdAsText.setText(reportId); // Display the report ID
-                    Toast.makeText(ClaimingPass.this, "Claim Passed Successfully. Report ID: " + reportId, Toast.LENGTH_SHORT).show();
+                    getReportIdAsText.setText(reportId);
+                    NotifyFounder(objectID);
+                    firestore.collection("Admin")
+                            .document("Main")
+                            .collection("Passes")
+                            .add(claimData)
+                            .addOnSuccessListener(task->{
+
+                            }).addOnFailureListener(e->Toast.makeText(ClaimingPass.this, "Error adding document to admin", Toast.LENGTH_SHORT).show());
                 })
                 .addOnFailureListener(e -> Toast.makeText(ClaimingPass.this, "Error adding document", Toast.LENGTH_SHORT).show());
     }
+//
+    private void NotifyFounder(String foundedObjectMatched){
+        firestore.collection("FoundObject")
+                .document(foundedObjectMatched)
+                .get()
+                .addOnSuccessListener(task ->{
+                   Object uid = task.get("uid");
+                    FirebaseMessaging firebaseMessaging = FirebaseMessaging.getInstance();
+                    firebaseMessaging.getToken().addOnCompleteListener(task1 -> {
+                        if(task1.isSuccessful()) {
+                            firestore.collection("User")
+                                    .document(uid.toString())
+                                    .get()
+                                    .addOnSuccessListener(task2->{
+                                        Object tk = task2.get("fcmToken");
+                                        String tkc = tk.toString();
+                                        if(tkc == null){
+                                            Toast.makeText(getApplicationContext(), "token is empty", Toast.LENGTH_SHORT).show();
+                                        }
+                                        Log.e("Token2: ", tkc);
+                                        TokenFetcher tokenFetcher = new TokenFetcher();
+                                        NotificationSender sender = new NotificationSender(tokenFetcher);
+                                        sender.sendNotification(tkc, "Match Found", "The object you found " + task.get("type") + " has a match.");
+                                    });
+                            }
+                    });
+                });
+    }
+
+    private void NotifyUsersOnType(){
+        firestore.collection("LostObject")
+                .document()
+                .get()
+                .addOnSuccessListener(task -> {
+                    
+                });
+
+    }
+
 
     TextView getReportIdAsText, getName, getTypeAsText, getColorAsText, getLocationAsText, getFoundDateAsText, getLostDate,
             getBrandAsText, getModelAsText, getSizeAsText, getShapeAsText, getWidthAsText, getLengthAsText, getTextAsText, getRemarksAsText;
@@ -69,7 +135,7 @@ String matchedReportID, objectID;
             reportIDContainer, typeContainer, colorContainer, locationContainer;
     ImageView imageView;
     CardView cardView;
-
+MaterialButton cpass_home;
     private void InitIDs(){
         getReportIdAsText = findViewById(R.id.getReportIdAsText);
         getTypeAsText = findViewById(R.id.getTypeAsText);
@@ -87,10 +153,6 @@ String matchedReportID, objectID;
         getLostDate = findViewById(R.id.getDateLost);
         getName = findViewById(R.id.getNameAsText);
 
-        // Image
-        //setImage = findViewById(R.id.imageView4);
-
-        // Inflate set visibility
         brandContainer = findViewById(R.id.brandContainer);
         modelContainer = findViewById(R.id.modelContainer);
         sizeContainer = findViewById(R.id.sizeContainer);
@@ -106,8 +168,15 @@ String matchedReportID, objectID;
 
         imageView = findViewById(R.id.imageView4);
         cardView = findViewById(R.id.cv);
+        cpass_home = findViewById(R.id.cpass_home);
     }
-
+    private void setCpass_home(){
+        cpass_home.setOnClickListener(v-> {
+            Intent intent = new Intent(this, HomeNavigation.class);
+            startActivity(intent);
+            finish();
+        });
+    }
     private void retrieveMatchedReportID(){
 
         firestore.collection("LostObject")
@@ -137,7 +206,6 @@ String matchedReportID, objectID;
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         ChipClass object = document.toObject(ChipClass.class);
-                       // getTypeAsText.setText(object.getType().toString());
                         setAttributeVisibility(typeContainer,  getTypeAsText, object.getType());
                         setAttributeVisibility(colorContainer, getColorAsText, object.getColors());
                         setAttributeVisibility(locationContainer, getLocationAsText, object.getLocation());

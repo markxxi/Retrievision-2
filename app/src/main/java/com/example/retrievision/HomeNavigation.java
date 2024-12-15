@@ -1,4 +1,6 @@
 package com.example.retrievision;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,12 +11,16 @@ import android.os.Handler;
 import android.transition.ChangeBounds;
 import android.transition.Fade;
 import android.transition.TransitionManager;
+import android.util.DisplayMetrics;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
@@ -23,6 +29,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.transition.MaterialContainerTransform;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,34 +41,34 @@ public class HomeNavigation extends AppCompatActivity {
 
     BottomNavigationView navbar;
     View underlineView;
-
-    ConstraintLayout constraintLayout, constraintLayout2;
+LinearLayout btl;
+    ConstraintLayout constraintLayout;
     HomeFragment home = new HomeFragment();
     LeaderboardFragment reward = new LeaderboardFragment();
     NotificationFragment notification = new NotificationFragment();
     ProfileFragment profile = new ProfileFragment();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.home_navigation);
 
         initIDs();
         replaceFragmentOnNavBar();
         navbarColorState();
-
+        UnderlineHomeInit(R.id.nav_home, 0);
         loadProfilePicture();
+        networkDetection = new NetworkDetection();
     }
 
     private void initIDs(){
         navbar = findViewById(R.id.bottom_navigation);
         constraintLayout = findViewById(R.id.constraint_layout);
-        constraintLayout2 = findViewById(R.id.framelayout);
+        btl = findViewById(R.id.bottom_navigation_layout);
         underlineView = findViewById(R.id.underline);
         user_profile = findViewById(R.id.userprofile);
-      //  initials = findViewById(R.id.initials);
 
     }
 
@@ -98,7 +105,7 @@ public class HomeNavigation extends AppCompatActivity {
             return false;
         });
 
-        ColorStateList color = ColorStateList.valueOf(Color.parseColor("#F1F5F9"));
+        ColorStateList color = ColorStateList.valueOf(Color.parseColor("#143C6F"));
         underlineSelectedItem(navbar.getMenu().getItem(0).getItemId());
         user_profile.setOnClickListener(v->{
             underlineSelectedItem(R.id.userprofile);
@@ -113,27 +120,48 @@ public class HomeNavigation extends AppCompatActivity {
     }
 
     public void underlineSelectedItem(int itemId) {
-        TransitionManager.beginDelayedTransition(constraintLayout2, new ChangeBounds());
-        ConstraintSet constraintSet = new ConstraintSet();
-        constraintSet.clone(constraintLayout2);
+
         if (itemId == R.id.nav_home) {
-            constraintSet.setHorizontalBias(R.id.underline, 0.06f);
+            moveUnderlineTo(0, false);
         } else if (itemId == R.id.nav_rank) {
-            constraintSet.setHorizontalBias(R.id.underline, 0.50f);
+            moveUnderlineTo(1, false);
         } else if (itemId == R.id.nav_notification) {
-            constraintSet.setHorizontalBias(R.id.underline, 0.94f);
+            moveUnderlineTo(2, false);
         } else if (itemId == R.id.userprofile) {
-            constraintSet.setHorizontalBias(R.id.underline, 1.432f);
+            moveUnderlineTo(-1, true);
         }
-        constraintSet.applyTo(constraintLayout2);
+            }
+
+private void UnderlineHomeInit(int item, int index){
+    if (item == R.id.nav_home) {
+        int totalWidth = navbar.getWidth() + (int) getResources().getDimension(com.intuit.sdp.R.dimen._23sdp);
+        int itemCount = navbar.getMenu().size();
+        int itemWidth = totalWidth / itemCount;
+        int newTranslationX = itemWidth + (itemWidth / 2) - (underlineView.getWidth() / 2);
+        underlineView.animate().translationX(newTranslationX).setDuration(300).start();
+    }
+}
+    private void moveUnderlineTo(int index, boolean isProfile) {
+        int totalWidth = navbar.getWidth() - (int) getResources().getDimension(com.intuit.sdp.R.dimen._20sdp);
+        int itemCount = navbar.getMenu().size();
+
+        if (isProfile) {
+            int[] profileLocation = new int[2];
+            user_profile.getLocationOnScreen(profileLocation);
+
+            int profileImageCenterX = profileLocation[0] + (user_profile.getWidth() / 2);
+            underlineView.animate().translationX(profileImageCenterX - ((float) underlineView.getWidth() / 2) - (int) getResources().getDimension(com.intuit.sdp.R.dimen._27sdp)).setDuration(300).start();
+        } else {
+            int itemWidth = totalWidth / itemCount;
+            int newTranslationX = itemWidth * index + (itemWidth / 2) - (underlineView.getWidth() / 2);
+            underlineView.animate().translationX(newTranslationX).setDuration(300).start();
+        }
     }
 
     private void navbarColorState(){
         ColorStateList iconColors = ContextCompat.getColorStateList(this, R.color.change_color_state);
         navbar.setItemIconTintList(iconColors);
         user_profile.setBorderColor(Color.parseColor("#143C6F"));
-//        TransitionManager.beginDelayedTransition(constraintLayout, new Fade());
-//        constraintLayout.setBackgroundColor(Color.parseColor("#242b45"));
     }
 
     CircleImageView user_profile;
@@ -163,6 +191,18 @@ public class HomeNavigation extends AppCompatActivity {
         }
     }
 
+    NetworkDetection networkDetection;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+        registerReceiver(networkDetection, filter);
+    }
 
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterReceiver(networkDetection);
+    }
 }

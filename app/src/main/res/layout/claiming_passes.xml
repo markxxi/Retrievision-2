@@ -23,7 +23,15 @@
         android:id="@+id/claiming_pass_viewpager"
         android:layout_below="@+id/h1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="@dimen/_500sdp">
     </androidx.viewpager2.widget.ViewPager2>
+    <TextView
+        android:id="@+id/dialog_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="swipe to view more >>"
+        android:textSize="12sp"
+        android:layout_below="@id/claiming_pass_viewpager"
+        android:layout_marginBottom="15dp"
+        android:gravity="center_horizontal"/>
 </RelativeLayout>

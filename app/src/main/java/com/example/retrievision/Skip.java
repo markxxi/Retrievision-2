@@ -2,16 +2,26 @@ package com.example.retrievision;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,6 +34,7 @@ public class Skip extends Abstract_Generated {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.skip_report);
 
         InitIDs();
@@ -37,14 +48,18 @@ public class Skip extends Abstract_Generated {
     private void autogenLostTags() {
         Intent intent = getIntent();
         String highestObject = intent.getStringExtra("highestObject");
+        String colorExtraction = intent.getStringExtra("dominant_colors");
 
         if (highestObject == null) {
-           // setUpTags();
             return;
         }
-
-        // Adding the main tag
+        Log.e("colors: ", colorExtraction);
         addChip(chipType, highestObject);
+        if (colorExtraction != null && !colorExtraction.isEmpty()) {
+            for (String color : colorExtraction.split("\n")) {
+                addChip(chipColor, color);
+            }
+        }
 
         // Categories
         Set<String> electronics = new HashSet<>(Arrays.asList("Keyboard", "Earphones", "Flash Drive", "Charger", "Smartphone", "Headphones", "Wireless Earphones"));
@@ -56,10 +71,8 @@ public class Skip extends Abstract_Generated {
         String category = getCategory(highestObject, electronics, personalBelongings, accessories, clothing, stationary);
         addChip(chipCategory, category);
 
-        // Handle visibility based on category
         handleVisibilityBasedOnCategory(category);
 
-        //setUpTags();
     }
 
     private String getCategory(String item, Set<String> electronics, Set<String> personalBelongings, Set<String> accessories, Set<String> clothing, Set<String> stationary) {
@@ -74,7 +87,7 @@ public class Skip extends Abstract_Generated {
         } else if (stationary.contains(item)) {
             return "Stationary";
         }
-        return ""; // Default category, if needed
+        return "";
     }
 
     private void handleVisibilityBasedOnCategory(String category) {
@@ -82,7 +95,6 @@ public class Skip extends Abstract_Generated {
             sizeInputLayout.setVisibility(View.GONE);
         } else if ("Personal Belongings".equals(category) || "Stationary".equals(category) || "Accessory".equals(category)) {
             sizeInputLayout.setVisibility(View.GONE);
-            //chipShape.setVisibility(View.GONE);
             dimensionInputLayout.setVisibility(View.GONE);
         } else if ("Clothing".equals(category)) {
             shapeInputLayout.setVisibility(View.GONE);
@@ -126,6 +138,10 @@ public class Skip extends Abstract_Generated {
         sizeInputLayout = findViewById(R.id.sizeInputLayout);
         shapeInputLayout = findViewById(R.id.shapeInputLayout);
         dimensionInputLayout = findViewById(R.id.dimensionInputLayout);
+        autoCompleteRoom = findViewById(R.id.roomDropdown);
+        roomInputLayout = findViewById(R.id.roomInputLayout);
+        locationLayout = findViewById(R.id.locationLinear);
+        chipLocationLayout = findViewById(R.id.chipLocationLayout);
     }
 
     private void setUpDropdowns(){
@@ -221,6 +237,10 @@ public class Skip extends Abstract_Generated {
             getChangeColorTextTime.setTextColor(redColor);
             return;
         }
+        if (!validateTags()) {
+            return; // dont proceed if validation fails
+        }
         infoToNextIntent(ConfirmationLost.class);
     }
+
 }

@@ -3,14 +3,15 @@ package com.example.retrievision;
 import com.google.firebase.firestore.DocumentReference;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ChipClass implements Serializable {
-    //private DocumentReference documentReference;
+
 private List<String> Category, Type, Color, Brand, Model, Text, Location;
-private String Size, Width, Height, Shape, Remarks, Date, Time, StudentName, Status, ReportType, Image, reportId;
+private String Size, Width, Height, Shape, Remarks, Date, Time, StudentName, Status, ReportType, Image, reportId, UID, DateReported;
     public ChipClass() {
-       //constructor <333
+
     }
     public ChipClass(String reportId) {
         this.reportId = reportId;
@@ -116,6 +117,8 @@ private String Size, Width, Height, Shape, Remarks, Date, Time, StudentName, Sta
         return StudentName;
     }
 
+    public void setUID(String uid){this.UID = uid;}
+    public String getUID(){return UID;}
 
     public void setStatus(String status){
         this.Status = status;
@@ -137,4 +140,10 @@ private String Size, Width, Height, Shape, Remarks, Date, Time, StudentName, Sta
     public String getImageUrl(){
         return Image;
     }
+
+    public void setDateReported(String dateReported) {
+        this.DateReported = dateReported;
+    }
+    public String getDateReported(){return DateReported; }
+
 }

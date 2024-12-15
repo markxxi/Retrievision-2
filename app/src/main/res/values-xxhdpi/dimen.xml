@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_end">30dp</dimen>
+    <dimen name="scan_height_view">390dp</dimen>
+    <dimen name="margin_top">-30dp</dimen>
+    <!--SIGN IN PAGE-->
+    <dimen name="logo_height">552dp</dimen>
+    <dimen name="logo_width">552dp</dimen>
+    <dimen name="logo_mt">10dp</dimen>
+    <dimen name="app_name_width">280dp</dimen>
+    <dimen name="app_name_height">55dp</dimen>
+    <dimen name="app_descrip_mt">9dp</dimen>
+    <dimen name="app_descrip">13sp</dimen>
+    <dimen name="app_name_ms">32dp</dimen>
+    <dimen name="frame_mt">25dp</dimen>
+    <dimen name="sign_in_ts">12sp</dimen>
+    <!--HOME FRAGMENT-->
+    <!--RECTANGLE VIEW (FRAME LAYOUT)-->
+    <dimen name="rv_ms">30dp</dimen>
+    <dimen name="rv_layout_ht">200dp</dimen>
+    <dimen name="v_box_ms">170dp</dimen>
+    <dimen name="v_box_layout_wd">250dp</dimen>
+    <dimen name="v_box_layout_ht">260dp</dimen>
+
+    <!--SCAN VIEW (RELATIVE CONSTRAINT LAYOUT)-->
+    <dimen name="odd_ht">370dp</dimen>
+    <dimen name="odd_me">30dp</dimen>
+    <dimen name="img_lost">200dp</dimen>
+    <dimen name="tv_headline_mt">110dp</dimen>
+    <dimen name="tv_headline_me">44dp</dimen>
+    <dimen name="scan_btn_mt">12dp</dimen>
+    <dimen name="scan_btn_me">36dp</dimen>
+
+    <!--2 app compat button-->
+    <dimen name="btn_height">58dp</dimen>
+    <dimen name="btn_report">45dp</dimen>
+
+    <!--BOTTOM NAV-->
+    <dimen name="bn_icon_size">45dp</dimen>
+    <dimen name="cv_width">50dp</dimen>
+    <dimen name="cv_height">50dp</dimen>
+    <dimen name="bn_padding">50dp</dimen>
+    <dimen name="bn_mt">0dp</dimen>
+    <dimen name="bn_pe">23dp</dimen>
+    <dimen name="underline_mt">4dp</dimen>
+
+    <!--PROFILE FRAGMENT-->
+    <dimen name="parent_bottom_margin">170dp</dimen>
+    <dimen name="pf_layout_ht">165dp</dimen>
+    <dimen name="pf_cv">70dp</dimen>
+    <dimen name="pf_nts">13sp</dimen>
+    <dimen name="pf_ets">10sp</dimen>
+
+    <dimen name="col_1">120dp</dimen>
+    <dimen name="col_1_icon_size">25dp</dimen>
+    <dimen name="row_icon_size">25dp</dimen>
+</resources>

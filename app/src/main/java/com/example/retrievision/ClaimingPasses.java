@@ -2,6 +2,7 @@ package com.example.retrievision;
 
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -36,6 +38,7 @@ FirebaseAuth firebaseAuth;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.claiming_passes);
         firestore = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -47,7 +50,6 @@ FirebaseAuth firebaseAuth;
 
     String reportId;
     List<String> claimedObjects = new ArrayList<>();
-
     private void database_claimingPass(){
 
         firestore.collection("User").document(userID)
@@ -59,7 +61,6 @@ FirebaseAuth firebaseAuth;
                         reportId = document.getId();
                         claimedObjects.add(reportId);
                     }
-
                     pass_to_pager();
                 });
 
@@ -111,9 +112,10 @@ FirebaseAuth firebaseAuth;
         LinearLayout brandContainer, modelContainer, sizeContainer, shapeContainer, dimensionContainer, textContainer, remarksContainer,
                  typeContainer, colorContainer, locationContainer;
         ImageView imageView;
-
+TextView cv_text;
         public ObjectViewHolder(@NonNull View itemView) {
             super(itemView);
+            cv_text = itemView.findViewById(R.id.cvtext);
             getReportIdAsText = itemView.findViewById(R.id.getReportIdAsText);
             getTypeAsText = itemView.findViewById(R.id.getTypeAsText);
             getColorAsText = itemView.findViewById(R.id.getColorAsText);
@@ -145,15 +147,16 @@ FirebaseAuth firebaseAuth;
             imageView = itemView.findViewById(R.id.imageView4);
         }
     }
-        FirebaseFirestore firestore;
-String lost, found;
+
+    FirebaseFirestore firestore;
+    String lost, found;
     FirebaseUser username;
+
     private void claimed_object_details(ObjectViewHolder holder, String claimedObject){
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         String userID = firebaseAuth.getUid();
         username = firebaseAuth.getCurrentUser();
-
-         firestore = FirebaseFirestore.getInstance();
+        firestore = FirebaseFirestore.getInstance();
         assert userID != null;
         firestore.collection("User").document(userID)
                 .collection("ClaimedObjects")
@@ -163,9 +166,8 @@ String lost, found;
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
-                                found = document.getString("objectID");
-                                lost = document.getString("matchedReportID");
-
+                                found = document.getString("foundedObjectMatched");
+                                lost = document.getString("lostObjectBeingMatched");
                                 retrieveMatchedReportID(holder);
                                 objectID(holder);
                         }
@@ -188,7 +190,7 @@ String lost, found;
                     });
         }
 
-        private void objectID(ObjectViewHolder holder){
+        private void objectID(ObjectViewHolder holder) {
             firestore.collection("FoundObject")
                     .document(found)
                     .get()
@@ -196,24 +198,59 @@ String lost, found;
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
                             ChipClass object = document.toObject(ChipClass.class);
-                            assert object != null;
-                            setAttributeVisibility(holder.typeContainer, holder.getTypeAsText, object.getType());
-                            setAttributeVisibility(holder.colorContainer, holder.getColorAsText, object.getColors());
-                            setAttributeVisibility(holder.locationContainer, holder.getLocationAsText, object.getLocation());
-                            setAttributeVisibility(holder.brandContainer, holder.getBrandAsText, object.getBrand());
-                            setAttributeVisibility(holder.modelContainer, holder.getModelAsText, object.getModel());
-                            setAttributeVisibility(holder.textContainer, holder.getTextAsText, object.getText());
-                            setAttributeVisibility(holder.sizeContainer, holder.getSizeAsText, object.getSize());
-                            setAttributeVisibility(holder.shapeContainer, holder.getShapeAsText, object.getShape());
-                            setAttributeVisibility(holder.dimensionContainer, holder.getWidthAsText, object.getWidth());
-                            setAttributeVisibility(holder.dimensionContainer, holder.getLengthAsText, object.getHeight());
-                            setAttributeVisibility(holder.remarksContainer, holder.getRemarksAsText, object.getRemarks());
-                            holder.getFoundDateAsText.setText(String.format("%s %s", object.getDate(), object.getTime()));
 
-                            String image = object.getImageUrl();
-                            if(image !=null){
-                                Glide.with(holder.itemView.getContext()).load(image).into(holder.imageView);
+                            if (object != null) {
+                                if (object.getType() != null) {
+                                    setAttributeVisibility(holder.typeContainer, holder.getTypeAsText, object.getType());
+                                }
+                                if (object.getColors() != null) {
+                                    setAttributeVisibility(holder.colorContainer, holder.getColorAsText, object.getColors());
+                                }
+                                if (object.getLocation() != null) {
+                                    setAttributeVisibility(holder.locationContainer, holder.getLocationAsText, object.getLocation());
+                                }
+                                if (object.getBrand() != null) {
+                                    setAttributeVisibility(holder.brandContainer, holder.getBrandAsText, object.getBrand());
+                                }
+                                if (object.getModel() != null) {
+                                    setAttributeVisibility(holder.modelContainer, holder.getModelAsText, object.getModel());
+                                }
+                                if (object.getText() != null) {
+                                    setAttributeVisibility(holder.textContainer, holder.getTextAsText, object.getText());
+                                }
+                                if (object.getSize() != null) {
+                                    setAttributeVisibility(holder.sizeContainer, holder.getSizeAsText, object.getSize());
+                                }
+                                if (object.getShape() != null) {
+                                    setAttributeVisibility(holder.shapeContainer, holder.getShapeAsText, object.getShape());
+                                }
+                                if (object.getWidth() != null) {
+                                    setAttributeVisibility(holder.dimensionContainer, holder.getWidthAsText, object.getWidth());
+                                }
+                                if (object.getHeight() != null) {
+                                    setAttributeVisibility(holder.dimensionContainer, holder.getLengthAsText, object.getHeight());
+                                }
+                                if (object.getRemarks() != null) {
+                                    setAttributeVisibility(holder.remarksContainer, holder.getRemarksAsText, object.getRemarks());
+                                }
+
+                                // Display date and time only if both are available
+                                if (object.getDate() != null && object.getTime() != null) {
+                                    holder.getFoundDateAsText.setText(String.format("%s %s", object.getDate(), object.getTime()));
+                                }
+
+                                String image = object.getImageUrl();
+                                if (image != null) {
+                                    Glide.with(holder.itemView.getContext()).load(image).into(holder.imageView);
+                                } else {
+                                    holder.cv_text.setText("Reported By Admin");
+                                    holder.cv_text.setVisibility(View.VISIBLE);
+                                }
+                            } else {
+                                Log.e("objectID", "Failed to map document to ChipClass");
                             }
+                        } else {
+                            Log.e("objectID", "Failed to get document: " + task.getException());
                         }
                     });
         }

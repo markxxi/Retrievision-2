@@ -2,72 +2,71 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraint_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:backgroundTint="@android:color/white">
   <FrameLayout
       android:id="@+id/nav_host_fragment"
       android:layout_width="0dp"
       android:layout_height="match_parent"
-      app:layout_constraintBottom_toTopOf="@id/framelayout"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" >
   </FrameLayout>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/framelayout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="20dp"
-    app:layout_constraintBottom_toBottomOf="parent">
-  <com.google.android.material.bottomnavigation.BottomNavigationView
-      android:id="@+id/bottom_navigation"
-      style="@style/BottomNavigationStyle"
-      android:layout_width="0dp"
-      android:layout_height="wrap_content"
-      app:itemIconTint="@color/blue"
-      android:layout_marginStart="29dp"
-      android:layout_marginEnd="120dp"
-      android:layout_marginBottom="3dp"
-      app:itemBackground="@android:color/transparent"
-      android:background="@android:color/transparent"
-      app:elevation="0dp"
-      app:itemHorizontalTranslationEnabled="true"
-      app:itemIconSize="40dp"
-      app:labelVisibilityMode="unlabeled"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:menu="@menu/menu" />
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+          <LinearLayout
+              android:paddingHorizontal="@dimen/_28sdp"
+              android:id="@+id/bottom_navigation_layout"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toStartOf="parent">
 
-  <de.hdodenhof.circleimageview.CircleImageView
-      android:id="@+id/userprofile"
-      android:layout_width="58dp"
-      android:layout_height="58dp"
-      android:elevation="4dp"
-      android:translationZ="8dp"
-      app:civ_border_width="3dp"
-      android:src="@android:color/white"
-      app:civ_border_color="@color/blue"
-      android:layout_marginBottom="50dp"
-      android:layout_marginStart="-30dp"
-      app:layout_constraintStart_toEndOf="@id/bottom_navigation"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintBottom_toBottomOf="parent"
-      />
+              <com.google.android.material.bottomnavigation.BottomNavigationView
+                  android:id="@+id/bottom_navigation"
+                  style="@style/BottomNavigationStyle"
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  android:background="@android:color/transparent"
+                  android:paddingEnd="@dimen/_20sdp"
+                  app:itemBackground="@android:color/transparent"
+                  app:itemHorizontalTranslationEnabled="true"
+                  app:itemIconSize="@dimen/_29sdp"
+                  app:itemIconTint="@color/blue"
+                  app:labelVisibilityMode="unlabeled"
+                  app:menu="@menu/menu">
 
-  <View
-      android:id="@+id/underline"
-      android:layout_width="50dp"
-      android:layout_height="20dp"
-      android:outlineProvider="bounds"
-      android:background="@drawable/skyblue_line"
-      android:layout_marginBottom="45dp"
-      app:layout_constraintBottom_toBottomOf="@id/bottom_navigation"
-      app:layout_constraintEnd_toEndOf="@id/bottom_navigation"
-      app:layout_constraintStart_toStartOf="@id/bottom_navigation" />
+              </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+              <de.hdodenhof.circleimageview.CircleImageView
+                  android:id="@+id/userprofile"
+                  android:layout_width="@dimen/_38sdp"
+                  android:layout_height="@dimen/_38sdp"
+                  android:layout_marginEnd="@dimen/_7sdp"
+                  android:src="@android:color/white"
+                  app:civ_border_color="@color/blue"
+                  app:civ_border_width="3dp" />
+
+          </LinearLayout>
+        <View
+            android:id="@+id/underline"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_15sdp"
+            android:layout_marginHorizontal="@dimen/_27sdp"
+            android:layout_marginTop="@dimen/_29sdp"
+            android:background="@drawable/skyblue_line"
+            android:outlineProvider="bounds" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

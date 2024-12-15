@@ -3,12 +3,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F1F5F9"
     tools:context=".LeaderboardFragment">
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
 
-    <!-- TODO: Update blank fragment layout -->
+        android:visibility="gone">
+    </ProgressBar>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
     <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="Integrity Page"
+        android:fontFamily="@font/poppinsmedium"
+        android:textStyle="bold"
+        android:textSize="@dimen/_25sdp"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:textColor="@color/yellow">
+    </TextView>
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Acknowledging students for their contribution in reporting objects."
+        android:fontFamily="@font/poppinsmedium"
+
+        android:textSize="@dimen/_10sdp"
+
+        android:layout_marginHorizontal="@dimen/_16sdp"
+        android:textColor="@color/darkgray">
+    </TextView>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_480sdp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/items_list"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
 
 </FrameLayout>

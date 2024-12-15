@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="@android:color/white"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="20dp"
+
+    app:cardElevation="0dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/_15sdp"
+        android:paddingHorizontal="@dimen/_13sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_15sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_27sdp"
+            android:layout_height="@dimen/_27sdp"
+            android:src="@drawable/icon_info">
+        </ImageView>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="15dp"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/notification_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Notif Title"
+                android:textColor="#335170"
+                android:textStyle="bold"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/notification_body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text="Notif Body"
+                android:textColor="#335170"
+                android:textSize="@dimen/_9sdp"/>
+        </LinearLayout>
+
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/button"-->
+
+<!--            android:layout_width="@dimen/_55sdp"-->
+<!--            android:layout_height="@dimen/_30sdp"-->
+<!--            android:layout_gravity="bottom"-->
+<!--            app:backgroundTint="#000000"-->
+<!--            android:alpha="0.1"-->
+
+<!--            app:cornerRadius="8dp"/>-->
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

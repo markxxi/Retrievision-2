@@ -2,10 +2,12 @@ package com.example.retrievision;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,19 +16,28 @@ import androidx.cardview.widget.CardView;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class Abstract_Confirmation extends AppCompatActivity {
 
     TextView getCategoryAsText, getTypeAsText, getColorAsText, getBrandAsText, getModelAsText, getTextAsText, getRemarksAsText, getSizeAsText, getShapeAsText, getWidthAsText, getHeightAsText, getLocationAsText, getDateAsText, getTimeAsText, getReporterName;
     LinearLayout categoryContainer, typeContainer, colorContainer, modelContainer, brandContainer, sizeContainer, shapeContainer, dimensionContainer, textContainer, remarksContainer, locationContainer, dateContainer, reporterContainer;
     FirebaseFirestore firestore;
+    ProgressBar progressBar;
 
     protected void displayInformation() {
         Intent intent = getIntent();
@@ -108,10 +119,19 @@ public abstract class Abstract_Confirmation extends AppCompatActivity {
         object.setTime(intent.getStringExtra("time"));
         object.setStatus("Pending");
         object.setStudentName(intent.getStringExtra("displayName"));
+        object.setUID(intent.getStringExtra("userID"));
         object.setReportType(reportType);
-
+        setReportDate(object);
         String photoPath = intent.getStringExtra("photoPath");
-        storeImage(photoPath,object, reportType);
+
+        checkForExistingReport(object, reportType, photoPath);
+    }
+
+    private void setReportDate(ChipClass object){
+        LocalDateTime localDateTime = LocalDateTime.now();
+        DateTimeFormatter dateReportedFormatted = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String dateReported = localDateTime.format(dateReportedFormatted);
+        object.setDateReported(dateReported);
     }
 
     protected void storeImage(String photoPath, ChipClass object, String collectionName){
@@ -139,22 +159,7 @@ public abstract class Abstract_Confirmation extends AppCompatActivity {
         FirebaseFirestore firestore = FirebaseFirestore.getInstance();
         DocumentReference docRef = firestore.collection(collectionName).document();
         String reportId = docRef.getId();
-object.setReportId(reportId);
-//        docRef.set(object)
-//                .addOnSuccessListener(aVoid -> {
-//                    firestore.collection("User").document(collectionName)
-//                            .set(new ChipClass(reportId))
-//                            .addOnSuccessListener(aVoid1 -> {
-//                                Toast.makeText(this, "Object and reference saved successfully", Toast.LENGTH_SHORT).show();
-//                            })
-//                            .addOnFailureListener(e -> {
-//                                Toast.makeText(this, "Error saving reference in User collection", Toast.LENGTH_SHORT).show();
-//                            })
-//                            .addOnFailureListener(e -> {
-//                                Toast.makeText(this, "Error saving to top-level Object collection", Toast.LENGTH_SHORT).show();
-//
-//                            });
-
+        object.setReportId(reportId);
         firestore.collection("User").document(userId).collection(collectionName)
                 .document(reportId)
                 .set(object)
@@ -162,21 +167,109 @@ object.setReportId(reportId);
                     firestore.collection(collectionName).document(reportId)
                             .set(object)
                             .addOnSuccessListener(aVoid1 -> {
-                                // Show success Toast
                                 Toast.makeText(this, "Document added with ID: " + reportId, Toast.LENGTH_SHORT).show();
+                                progressBar.setVisibility(View.GONE);
+                                if(object.getReportType().equals("LostObject")){notifyUsersOfNewLostReport();}
+                                else {notifyUsersOfNewFoundReport();}
+                                OpenSuccessfulActivity();
+
                             })
                             .addOnFailureListener(e -> {
-                                // Show failure Toast
                                 Toast.makeText(this, "Failed to set document in collection", Toast.LENGTH_SHORT).show();
                             });
                 })
                 .addOnFailureListener(e -> {
-                    // Show failure Toast for the first operation
                     Toast.makeText(this, "Failed to add document to user collection", Toast.LENGTH_SHORT).show();
                 });
 
     }
+    private void checkForExistingReport(ChipClass object, String reportType, String photoPath) {
+        String userId = getIntent().getStringExtra("userID");
 
+        String category = object.getCategory() != null && !object.getCategory().isEmpty() ? object.getCategory().get(0) : null;
+        String type = object.getType() != null && !object.getType().isEmpty() ? object.getType().get(0) : null;
+        String color = object.getColors() != null && !object.getColors().isEmpty() ? object.getColors().get(0) : null;
+
+        if (category == null || type == null || color == null) {
+            Toast.makeText(this, "Missing report information", Toast.LENGTH_SHORT).show();
+            progressBar.setVisibility(View.GONE);
+            return;
+        }
+
+        firestore.collection("User")
+                .document(userId)
+                .collection("FoundObject")
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        QuerySnapshot querySnapshot = task.getResult();
+                        boolean isDuplicate = false;
+
+                        for (QueryDocumentSnapshot document : querySnapshot) {
+                            // fix this unchecked cast
+                            List<String> existingCategory = (List<String>) document.get("category");
+                            List<String> existingType = (List<String>) document.get("type");
+                            List<String> existingColor = (List<String>) document.get("colors");
+                            Log.d("checkForExistingReport", "Checking document: " + document.getId());
+                            Log.d("checkForExistingReport", "Existing Category: " + existingCategory + ", Type: " + existingType + ", Color: " + existingColor);
+                            Log.d("checkForExistingReport", "Input Category: " + category + ", Type: " + type + ", Color: " + color);
+
+
+                            if (existingCategory != null && existingType != null && existingColor != null
+                                    && existingCategory.contains(category)
+                                    && existingType.contains(type)
+                                    && existingColor.contains(color)) {
+                                isDuplicate = true;
+                                break;
+                            }
+                        }
+
+                        if (isDuplicate) {
+                            Toast.makeText(this, "You already reported this object.", Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
+                        } else {
+                            storeImage(photoPath,object,reportType);
+
+                        }
+                    } else {
+                        Log.e("checkForExistingReport", "Error getting documents: " + task.getException());
+                    }
+
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("checkForExistingReport", "Firestore error: " + e.getMessage());
+                    progressBar.setVisibility(View.GONE); // Ensure progress bar is hidden even if query fails
+                });
+    }
+
+
+
+    protected void OpenSuccessfulActivity(){
+        Intent intent = new Intent(this, flow_successful.class);
+        startActivity(intent);
+    }
+    protected void notifyUsersOfNewFoundReport() {
+        TokenFetcher tokenFetcher = new TokenFetcher();
+        NotificationSender sender = new NotificationSender(tokenFetcher);
+        sender.sendNotification("/topics/new_found_object", "Notice!", "A Found Object has been Reported");
+    }
+    protected void notifyUsersOfNewLostReport() {
+        TokenFetcher tokenFetcher = new TokenFetcher();
+        NotificationSender sender = new NotificationSender(tokenFetcher);
+        sender.sendNotification("/topics/new_lost_object", "Notice!", "A Lost Object has been Reported");
+    }
+
+    protected  void backArrow(){
+        ImageView backArrow = findViewById(R.id.back_arrow);
+        backArrow.setOnClickListener(v-> {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                getOnBackPressedDispatcher().onBackPressed();
+            } else { // API 32 and below
+                super.onBackPressed();
+            }
+        }
+        );
+    }
 
     protected void InitIDs(){
         getCategoryAsText = findViewById(R.id.getCategoryAsText);

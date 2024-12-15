@@ -45,4 +45,5 @@ public class User {
     public String getProfilePictureUrl() {
         return profilePictureUrl;
     }
+
 }

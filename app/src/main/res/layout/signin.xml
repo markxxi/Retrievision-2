@@ -1,115 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#FFFFFF"
     tools:context=".SignIn">
 
+
     <ImageView
-        android:layout_width="328dp"
-        android:layout_height="515dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="-28dp"
-        android:layout_marginEnd="-4dp"
+        android:id="@+id/imageView"
+        android:layout_width="@dimen/_400sdp"
+        android:layout_height="@dimen/_400sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_40sdp"
+        android:adjustViewBounds="true"
         android:contentDescription="@string/ContentDescription"
-        android:src="@drawable/logo_cropped">
+        android:src="@drawable/logo_ret_rev"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
     </ImageView>
+
+    <ImageView
+        android:layout_width="91dp"
+        android:layout_height="43dp"
+        android:src="@drawable/dots"
+        app:layout_constraintBottom_toTopOf="@+id/app_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"></ImageView>
 
     <ImageView
         android:id="@+id/app_name"
-        android:layout_width="246dp"
-        android:layout_height="75dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="460dp"
-        android:layout_marginEnd="115dp"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_55sdp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
         android:contentDescription="@string/ContentDescription"
-        android:src="@drawable/logo_title">
-    </ImageView>
+        android:src="@drawable/logo_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"></ImageView>
 
     <TextView
         android:id="@+id/logodescription"
-        android:layout_width="305dp"
+        android:layout_width="@dimen/_170sdp"
         android:layout_height="wrap_content"
         android:layout_below="@id/app_name"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="-4dp"
-        android:layout_marginEnd="59dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="@font/poppinsmedium"
         android:text="@string/app_description"
-        android:textStyle="bold">
-    </TextView>
+        android:textColor="#50809F"
+        android:textSize="@dimen/_10sdp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/app_name"></TextView>
 
-    <ImageView
-        android:layout_width="294dp"
-        android:layout_height="52dp"
-        android:layout_below="@id/logodescription"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="40dp"
-        android:background="@drawable/shape_rectangle_40"
-        android:backgroundTint="#F7B94A"
-        android:contentDescription="@string/ContentDescription">
-    </ImageView>
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_70sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logodescription"
+        app:layout_constraintVertical_bias="0.282">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/logodescription"
-        android:layout_marginTop="39dp"
-        android:layout_marginStart="28dp">
-
-        <ImageView
-            android:id="@+id/image1"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="35dp"
-            android:src="@drawable/logos_microsoft_icon"
-            android:contentDescription="@string/ContentDescription"/>
-
-        <ImageView
-            android:id="@+id/image2"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/image1"
-            android:src="@drawable/sti_logo"
-            android:contentDescription="@string/ContentDescription"/>
-
-        <TextView
-            android:id="@+id/button_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="16dp"
-            android:layout_toEndOf="@id/image2"
-            android:fontFamily="@font/poppinsmedium"
-            android:text="@string/o365"
-            android:textSize="13sp"
-            android:textStyle="bold" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_41sdp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:background="@drawable/shape_rectangle_40"
+            android:backgroundTint="#F7B94A"></View>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/signin"
-            android:layout_width="295dp"
-            android:layout_height="55dp"
-            android:background="@drawable/shape_stroke_blue">
-        </androidx.appcompat.widget.AppCompatButton>
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_41sdp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@drawable/shape_stroke_blue"></androidx.appcompat.widget.AppCompatButton>
 
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_41sdp"
+            android:layout_margin="@dimen/_24sdp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:src="@drawable/logos_microsoft_icon"></ImageView>
+
+            <ImageView
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginHorizontal="15dp"
+                android:src="@drawable/sti_logo"></ImageView>
+
+            <TextView
+                android:id="@+id/button_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinsmedium"
+                android:text="@string/o365"
+                android:textSize="@dimen/_10sdp"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="162dp"
+                tools:layout_editor_absoluteY="758dp" />
+        </LinearLayout>
+
+
+    </FrameLayout>
 
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:visibility="gone"
-        android:layout_centerInParent="true" />
-</RelativeLayout>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

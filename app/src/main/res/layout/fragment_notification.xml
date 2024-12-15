@@ -3,12 +3,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F1F5F9"
     tools:context=".NotificationFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/_20sdp">
 
+
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_580sdp">
+
+        <LinearLayout
+            android:id="@+id/notification_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/title"
+            android:layout_marginHorizontal="10dp"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_50sdp">
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Notifications"
+                android:fontFamily="@font/poppinsmedium"
+                android:textStyle="bold"
+                android:textSize="@dimen/_25sdp"
+                android:layout_marginTop="16dp"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:textColor="@color/yellow">
+            </TextView>
+        </LinearLayout>
+
+    </ScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_alignBottom="@+id/scrollView2"
+        android:background="@drawable/linear_gradient"></View>
+</RelativeLayout>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:layout_gravity="center"
+        android:layout_below="@id/notification_view"
+        android:visibility="gone">
+    </ProgressBar>
 </FrameLayout>

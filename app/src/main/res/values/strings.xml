@@ -5,10 +5,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="reportFoundObject">Report Found Object</string>
     <string name="reportLostObject">Report Lost Object</string>
-    <string name="ScanDescription">Scan now to locate a reported matched object for easy finding
+    <string name="ScanDescription">Search now to locate a reported matched object for easy finding
                 and retrieval</string>
     <string name="FindMatch">Find a Match</string>
-    <string name="ScanNow">SCAN NOW</string>
+    <string name="ScanNow">SEARCH NOW</string>
     <string name="ContentDescription">Image</string>
     <string name="found_description">Please fill out the necessary details of the found object by following these steps.</string>
     <string name="lost_description">Please fill out the necessary details of the lost object by following these steps.</string>
@@ -36,4 +36,7 @@
     <string name="possible_matches_found">" possible matches found."</string>
     <string name="confirmation">Confirmation</string>
     <string name="are_you_certain_that_the_object_belongs_to_you">Are you certain that the object belongs to you?</string>
+    <string name="ground_floor">Ground Floor</string>
+    <string name="no_reported_objects">No Reported Objects</string>
+
 </resources>
